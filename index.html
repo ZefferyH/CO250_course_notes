@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PDF Chapter Viewer</title>
+    <style>
+        /* Ensure full-height display */
+        html, body {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            font-family: Arial, sans-serif;
+        }
+        #container {
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+        #header {
+            background-color: #f8f8f8;
+            padding: 5px;
+            text-align: center;
+            border-bottom: 1px solid #ddd;
+        }
+        select {
+            padding: 5px;
+            font-size: 16px;
+        }
+        iframe {
+            flex: 1; /* Fills remaining space */
+            width: 100%;
+            border: none;
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <!-- Header Section with Dropdown -->
+        <div id="header">
+            <label for="chapterSelect">Select a Chapter:</label>
+            <select id="chapterSelect" onchange="loadPDF()">
+                <option value="" disabled selected></option>
+                <option value="README.pdf">README</option>
+                <option value="CO250Chapter1.pdf">Chapter 1: Formulation</option>
+                <option value="CO250Chapter2.pdf">Chapter 2: Simplex</option>
+                <option value="CO250Chapter3.pdf">Chapter 3: Duality</option>
+                <option value="CO250Chapter4.pdf">Chapter 4: Integer Program</option>
+                <option value="CO250Chapter5.pdf">Chapter 5: Non-Linear Program</option>
+            </select>
+        </div>
+        <!-- PDF Display Area -->
+        <iframe id="pdfFrame" src="README.pdf" title="PDF Viewer"></iframe>
+    </div>
+
+    <script>
+        // Function to load the selected PDF
+        function loadPDF() {
+            const selectElement = document.getElementById('chapterSelect');
+            const pdfFrame = document.getElementById('pdfFrame');
+            const selectedPDF = selectElement.value;
+
+            if (selectedPDF) {
+                pdfFrame.src = selectedPDF;
+            }
+        }
+    </script>
+</body>
+</html>
